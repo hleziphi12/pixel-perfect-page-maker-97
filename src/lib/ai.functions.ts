@@ -21,7 +21,7 @@ const SYSTEM: Record<string, string> = {
 export const aiGenerate = createServerFn({ method: "POST" })
   .inputValidator((d: unknown) => Input.parse(d))
   .handler(async ({ data }) => {
-    const apiKey = process.env.LOVABLE_API_KEY;
+    const apiKey = process.env["LOVABLE_API_KEY"];
     if (!apiKey) return { text: demo(data.mode, data.messages.at(-1)!.content), demo: true, error: null };
     try {
       const { createOpenAI } = await import("@ai-sdk/openai");
@@ -33,7 +33,7 @@ export const aiGenerate = createServerFn({ method: "POST" })
       });
       const result = streamText({
         model: provider.responses("openai/gpt-6-astra"),
-        system: SYSTEM[data.mode],
+        system: SYSTEM[data.mode] ?? "",
         messages: data.messages,
         providerOptions: {
           openai: {

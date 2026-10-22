@@ -4,10 +4,10 @@ export type Priority = "high" | "medium" | "low";
 export type Task = {
   id: string;
   title: string;
-  notes?: string;
+  notes?: string | undefined;
   priority: Priority;
   date: string; // yyyy-mm-dd
-  time?: string; // HH:mm
+  time?: string | undefined;
   done: boolean;
   createdAt: number;
 };

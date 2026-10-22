@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
-import { CalendarDays, List, Loader2, Pencil, Plus, Sparkles as _s, Trash2, Wand2 } from "lucide-react";
+import { CalendarDays, List, Loader2, Pencil, Plus, Trash2, Wand2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -11,7 +11,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { AiBadge, Md, PageTitle } from "@/components/AppShell";
 import { aiGenerate } from "@/lib/ai.functions";
 import { isOverdue, today, uid, useTasks, type Priority, type Task } from "@/lib/store";
-void _s;
 
 export const Route = createFileRoute("/planner")({
   head: () => ({
