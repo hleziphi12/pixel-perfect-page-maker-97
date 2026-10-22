@@ -80,7 +80,7 @@ export function Md({ children }: { children: string }) {
   );
 }
 
-export function AiBadge({ demo }: { demo?: boolean }) {
+export function AiBadge({ demo }: { demo?: boolean | undefined }) {
   return demo ? (
     <span className="rounded-full bg-warning/20 px-2 py-0.5 text-xs font-medium text-warning-foreground">Demo content</span>
   ) : (

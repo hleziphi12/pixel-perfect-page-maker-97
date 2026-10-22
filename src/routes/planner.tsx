@@ -51,7 +51,7 @@ function Planner() {
   const done = tasks.filter((t) => t.done).length;
 
   function save() {
-    if (!edit || !edit.title.trim()) return toast.error("Please enter a title");
+    if (!edit || !edit.title.trim()) { toast.error("Please enter a title"); return; }
     if (edit.id) setTasks((p) => p.map((t) => (t.id === edit.id ? edit : t)));
     else setTasks((p) => [{ ...edit, id: uid(), createdAt: Date.now() }, ...p]);
     setEdit(null);
@@ -59,7 +59,7 @@ function Planner() {
 
   async function plan(kind: "daily" | "weekly") {
     const open = tasks.filter((t) => !t.done).map(({ title, priority, date, time }) => ({ title, priority, due: `${date} ${time ?? ""}`.trim(), overdue: isOverdue({ date, time } as Task) }));
-    if (!open.length) return toast.info("Add some open tasks first");
+    if (!open.length) { toast.info("Add some open tasks first"); return; }
     setBusy(kind);
     const res = await aiGenerate({ data: { mode: "schedule", messages: [{ role: "user", content: `Create a ${kind} schedule. Today is ${new Date().toDateString()}. Tasks: ${JSON.stringify(open)}` }] } });
     if (res.error) toast.warning(res.error);
